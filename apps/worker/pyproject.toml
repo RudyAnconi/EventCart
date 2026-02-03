@@ -1,0 +1,11 @@
+[project]
+name = "eventcart-worker"
+version = "0.1.0"
+description = "EventCart outbox worker"
+requires-python = ">=3.12"
+dependencies = [
+  "structlog>=24.1",
+]
+
+[tool.uv]
+package = true
