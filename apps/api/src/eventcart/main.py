@@ -72,7 +72,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
     )
     return JSONResponse(
         status_code=exc.status_code,
-        content=problem.model_dump(),
+        content=problem.model_dump(mode="json"),
         media_type="application/problem+json",
     )
 
@@ -82,13 +82,14 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     problem = ProblemDetail(
         title="Validation error",
         status=422,
-        detail=str(exc),
+        detail="Request validation failed",
         instance=str(request.url.path),
         timestamp=datetime.now(timezone.utc),
+        errors=exc.errors(),
     )
     return JSONResponse(
         status_code=422,
-        content=problem.model_dump(),
+        content=problem.model_dump(mode="json"),
         media_type="application/problem+json",
     )
 

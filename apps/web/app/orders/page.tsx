@@ -37,7 +37,7 @@ export default function OrdersPage() {
   });
 
   if (!accessToken) {
-    return <p className="text-slate-600">Sign in to view orders.</p>;
+    return <p className="text-slate-300">Sign in to view orders.</p>;
   }
 
   return (
@@ -46,7 +46,7 @@ export default function OrdersPage() {
       {isLoading && <p>Loading orders...</p>}
       {error && <p className="text-red-600">Unable to load orders.</p>}
       {data?.length === 0 && (
-        <Card className="p-6 text-slate-600">
+        <Card className="p-6 text-slate-300">
           <CardContent>No orders yet.</CardContent>
         </Card>
       )}
@@ -56,13 +56,13 @@ export default function OrdersPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-500">Order</p>
+                <p className="text-sm text-slate-400">Order</p>
                 <p className="font-semibold">{order.id.slice(0, 8)}</p>
               </div>
               <Badge>{order.status}</Badge>
             </div>
             <div className="flex items-center justify-between">
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-400">
                 ${(order.total_cents / 100).toFixed(2)} • {order.items.length} items
               </p>
               <Link

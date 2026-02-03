@@ -9,9 +9,10 @@ export interface ButtonProps
 }
 
 const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  default: "bg-ink text-white hover:bg-slate-800",
-  outline: "border border-slate-200 text-ink hover:bg-slate-50",
-  ghost: "text-ink hover:bg-slate-100",
+  default: "bg-slate-100 text-slate-900 hover:bg-slate-200",
+  outline:
+    "border border-slate-500 bg-slate-900/60 text-slate-100 hover:bg-slate-800",
+  ghost: "text-slate-100 hover:bg-slate-800/70",
 };
 
 const sizeClasses: Record<NonNullable<ButtonProps["size"]>, string> = {

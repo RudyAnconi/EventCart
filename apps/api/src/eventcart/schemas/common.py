@@ -12,3 +12,4 @@ class ProblemDetail(BaseModel):
     detail: str | None = None
     instance: str | None = None
     timestamp: datetime
+    errors: list[dict] | None = None

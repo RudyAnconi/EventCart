@@ -56,7 +56,7 @@ export default function OrderDetailPage() {
   };
 
   if (!accessToken) {
-    return <p className="text-slate-600">Sign in to view this order.</p>;
+    return <p className="text-slate-300">Sign in to view this order.</p>;
   }
 
   return (
@@ -67,7 +67,7 @@ export default function OrderDetailPage() {
           <Card className="p-6">
             <CardHeader>
               <CardTitle>Order {data.id.slice(0, 8)}</CardTitle>
-              <p className="text-sm text-slate-500">Status: {data.status}</p>
+              <p className="text-sm text-slate-400">Status: {data.status}</p>
               <p className="text-lg font-semibold">
                 Total ${(data.total_cents / 100).toFixed(2)}
               </p>
@@ -91,7 +91,7 @@ export default function OrderDetailPage() {
           {data.status === "PENDING_PAYMENT" && (
             <Button
               disabled={paying}
-              className="bg-accent hover:bg-accentDark"
+              className="bg-accent text-white hover:bg-accentDark"
               onClick={payNow}
             >
               {paying ? "Processing..." : "Pay now"}

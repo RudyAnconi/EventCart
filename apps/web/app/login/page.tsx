@@ -50,7 +50,7 @@ export default function LoginPage() {
         <CardContent>
           <form className="space-y-4" onSubmit={submit}>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-600">Email</label>
+              <label className="text-sm font-medium text-slate-300">Email</label>
               <Input
                 type="email"
                 required
@@ -59,7 +59,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-600">Password</label>
+              <label className="text-sm font-medium text-slate-300">Password</label>
               <Input
                 type="password"
                 required

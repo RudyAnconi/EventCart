@@ -29,7 +29,7 @@ export default function ProductsPage() {
     <section className="space-y-6">
       <div>
         <h1 className="font-display text-3xl font-semibold">Tickets</h1>
-        <p className="text-slate-600">Reserve your spot. Inventory updates instantly.</p>
+        <p className="text-slate-300">Reserve your spot. Inventory updates instantly.</p>
       </div>
       {isLoading && <p>Loading products...</p>}
       {error && <p className="text-red-600">Unable to load products.</p>}
@@ -39,17 +39,17 @@ export default function ProductsPage() {
             <CardHeader className="flex items-start justify-between">
               <div>
                 <CardTitle>{product.name}</CardTitle>
-                <p className="text-sm text-slate-500">SKU {product.sku}</p>
+                <p className="text-sm text-slate-400">SKU {product.sku}</p>
               </div>
               <Badge>{product.stock_qty} left</Badge>
             </CardHeader>
             <CardContent className="flex items-center justify-between">
-              <p className="text-lg font-semibold text-ink">
+              <p className="text-lg font-semibold text-slate-100">
                 ${(product.price_cents / 100).toFixed(2)}
               </p>
               <Button
                 size="sm"
-                className={`${justAdded[product.id] ? "bg-accent hover:bg-accentDark add-pulse" : ""}`}
+                className={`${justAdded[product.id] ? "bg-accent text-white hover:bg-accentDark add-pulse" : ""}`}
                 onClick={() => {
                   addItem({
                     product_id: product.id,

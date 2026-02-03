@@ -19,7 +19,7 @@ body {
 }
 
 .shadcn-label {
-  @apply text-sm font-medium text-slate-600;
+  @apply text-sm font-medium text-slate-300;
 }
 
 @keyframes cart-bump {

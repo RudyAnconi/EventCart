@@ -31,7 +31,7 @@ export function SiteNav() {
               key={link.href}
               href={link.href}
               className={`relative text-sm font-medium ${
-                pathname === link.href ? "text-accent" : "text-slate-600"
+                pathname === link.href ? "text-accent" : "text-slate-300 hover:text-slate-100"
               }`}
             >
               {link.label}

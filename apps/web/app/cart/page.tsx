@@ -49,7 +49,7 @@ export default function CartPage() {
     <section className="space-y-6">
       <h1 className="font-display text-3xl font-semibold">Your cart</h1>
       {items.length === 0 ? (
-        <Card className="p-6 text-slate-600">
+        <Card className="p-6 text-slate-300">
           <CardContent>No items yet. Add some tickets.</CardContent>
         </Card>
       ) : (
@@ -59,7 +59,7 @@ export default function CartPage() {
               <CardContent className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
                   <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-slate-400">
                     ${(item.price_cents / 100).toFixed(2)} each
                   </p>
                 </div>
@@ -90,7 +90,7 @@ export default function CartPage() {
               </Button>
               <Button
                 disabled={loading || !accessToken}
-                className="bg-accent hover:bg-accentDark"
+                className="bg-accent text-white hover:bg-accentDark"
                 onClick={checkout}
               >
                 {loading ? "Creating order..." : "Checkout"}
@@ -98,7 +98,7 @@ export default function CartPage() {
             </div>
           </div>
           {!accessToken && (
-            <p className="text-sm text-slate-600">Sign in to complete checkout.</p>
+            <p className="text-sm text-slate-300">Sign in to complete checkout.</p>
           )}
           {error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-600">{error}</p>}
         </div>

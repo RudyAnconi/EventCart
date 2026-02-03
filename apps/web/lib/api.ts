@@ -1,5 +1,36 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+export type ProblemDetail = {
+  type?: string;
+  title?: string;
+  status?: number;
+  detail?: string;
+  instance?: string;
+  timestamp?: string;
+  errors?: Array<{
+    loc?: Array<string | number>;
+    msg?: string;
+    type?: string;
+    ctx?: Record<string, unknown>;
+  }>;
+};
+
+export class ApiError extends Error {
+  status: number;
+  title?: string;
+  detail?: string;
+  errors?: ProblemDetail["errors"];
+
+  constructor(message: string, status: number, body?: ProblemDetail) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+    this.title = body?.title;
+    this.detail = body?.detail;
+    this.errors = body?.errors;
+  }
+}
+
 interface RequestOptions {
   accessToken?: string | null;
   onAccessToken?: (token: string | null) => void;
@@ -39,8 +70,21 @@ async function request<T>(
   }
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(errorText || `Request failed: ${response.status}`);
+    const contentType = response.headers.get("content-type") || "";
+    const rawText = await response.text();
+    let body: ProblemDetail | undefined;
+
+    if (contentType.includes("application/json") || contentType.includes("problem+json")) {
+      try {
+        body = JSON.parse(rawText) as ProblemDetail;
+      } catch {
+        body = undefined;
+      }
+    }
+
+    const message =
+      body?.detail || body?.title || rawText || `Request failed: ${response.status}`;
+    throw new ApiError(message, response.status, body);
   }
 
   return (await response.json()) as T;
