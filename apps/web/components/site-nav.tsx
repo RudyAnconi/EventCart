@@ -20,9 +20,9 @@ export function SiteNav() {
   const { totalItems, bump } = useCart();
 
   return (
-    <header className="sticky top-0 z-20 border-b border-white/40 bg-white/70 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-display text-xl font-semibold text-ink">
+        <Link href="/" className="font-display text-xl font-semibold text-slate-100">
           EventCart
         </Link>
         <nav className="flex items-center gap-4">
@@ -46,9 +46,16 @@ export function SiteNav() {
             </Link>
           ))}
           {!accessToken ? (
-            <Link href="/login">
-              <Button size="sm">Sign in</Button>
-            </Link>
+            <>
+              <Link href="/login">
+                <Button size="sm">Sign in</Button>
+              </Link>
+              <Link href="/register">
+                <Button variant="outline" size="sm">
+                  Register
+                </Button>
+              </Link>
+            </>
           ) : (
             <Button variant="outline" size="sm" onClick={() => logout()}>
               Logout
